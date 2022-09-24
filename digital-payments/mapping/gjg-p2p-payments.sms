@@ -1,0 +1,30 @@
+PREFIX : <urn:demo:digital-payments#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xml: <http://www.w3.org/XML/1998/namespace>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+MAPPING
+FROM CSV {
+}
+TO {
+  ?Transaction_iri a :Transaction ;
+    :amount_cc ?cc_amt_decimal_field ;
+    :transaction_timestamp ?payment_timestamp_dateTime_field ;
+    :amount_wallet ?wallet_amt_decimal_field .
+
+  ?Transaction_iri :pays_out ?User2_iri .
+
+  ?User1_iri :makes_payment ?Transaction_iri .
+
+  ?User1_iri :pays_any_p2p ?User2_iri .
+}
+WHERE {
+  BIND(TEMPLATE("urn:demo:digital-payments#Transaction-{tx_id}") AS ?Transaction_iri)
+  BIND(StrDt(sourceField("cc_amt"), <http://www.w3.org/2001/XMLSchema#decimal>) AS ?cc_amt_decimal_field)
+  BIND(StrDt(sourceField("payment_timestamp"), <http://www.w3.org/2001/XMLSchema#dateTime>) AS ?payment_timestamp_dateTime_field)
+  BIND(StrDt(sourceField("wallet_amt"), <http://www.w3.org/2001/XMLSchema#decimal>) AS ?wallet_amt_decimal_field)
+  BIND(TEMPLATE("urn:demo:digital-payments#User-{from_id}") AS ?User1_iri)
+  BIND(TEMPLATE("urn:demo:digital-payments#User-{to_id}") AS ?User2_iri)
+}

@@ -1,0 +1,18 @@
+PREFIX : <urn:demo:digital-payments#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xml: <http://www.w3.org/XML/1998/namespace>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+MAPPING
+FROM CSV {
+}
+TO {
+  ?User_iri :friend_of ?User2_iri .
+
+}
+WHERE {
+  BIND(TEMPLATE("urn:demo:digital-payments#User-{user1_id}") AS ?User_iri)
+  BIND(TEMPLATE("urn:demo:digital-payments#User-{user2_id}") AS ?User2_iri)
+}

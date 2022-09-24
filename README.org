@@ -19,7 +19,7 @@
   + [[file:digital-payments/][Digital Payments]]
     A make-believe digital payment app with social network
 
-    This directory includes Python code for generating
+    This directory includes Python code for generating data:
     + =Users= with active date, active flag, and address
     + =FoaF= (friend-of-a-friend) with nothing but friend links to other users
       There may be cases of a User linking to self, and there will be no bidirectional
@@ -27,4 +27,6 @@
       missing friend linkages
     + =P2P payments= Payments made to other users - this includes simple =Transaction=
       data like timestamp for time of payment, amount, etc
-      
+
+    Stardog-specific data mapping files in [[https://docs.stardog.com/virtual-graphs/mapping-data-sources#sms2-stardog-mapping-syntax-2][SMS2]] format
+    

@@ -1,0 +1,40 @@
+PREFIX : urn:demo:digital-payments
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xml: <http://www.w3.org/XML/1998/namespace>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+
+MAPPING
+FROM CSV {
+}
+TO {
+  ?User_iri a :User ;
+    rdfs:label ?name_string_field ;
+    :active_date ?active_date_date_field ;
+    :cpf ?cpf_string_field ;
+    :gender ?gender_string_field ;
+    :db_id ?id_integer_field ;
+    :full_name ?name_string_field .
+
+?Location_iri a :Location ;
+    rdfs:label ?address_string_field ;
+    :street_address ?address_string_field ;
+    :city ?city_string_field ;
+    :state ?state_string_field .
+
+  ?User_iri :lives_at ?Location_iri .
+}
+WHERE {
+  BIND(TEMPLATE("urn:demo:digital-payments#/User-{id}") AS ?User_iri)
+  BIND(StrDt(sourceField("active_date"), xsd:date) AS ?active_date_date_field)
+  BIND(StrDt(sourceField("cpf"), xsd:string) AS ?cpf_string_field)
+  BIND(StrDt(sourceField("gender"), xsd:string) AS ?gender_string_field)
+  BIND(StrDt(sourceField("id"), xsd:integer) AS ?id_integer_field)
+  BIND(StrDt(sourceField("name"), xsd:string) AS ?name_string_field)
+  BIND(TEMPLATE("urn:demo:digital-payments#/Location-{id}") AS ?Location_iri)
+  BIND(StrDt(sourceField("address"), xsd:string) AS ?address_string_field)
+  BIND(StrDt(sourceField("city"), xsd:string) AS ?city_string_field)
+  BIND(StrDt(sourceField("state"), xsd:string) AS ?state_string_field)
+}

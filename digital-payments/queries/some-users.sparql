@@ -1,7 +1,6 @@
 # Let's see some Users
 
 select *
-FROM <http://picpay.com/activeusers>
 where {
     ?s a :User ;
        :full_name ?name ;
