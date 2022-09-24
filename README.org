@@ -1,0 +1,30 @@
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:nil arch:headline author:t broken-links:nil
+#+options: c:nil creator:nil d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+options: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t timestamp:t title:t toc:t
+#+options: todo:t |:t
+#+title: RDF Demos
+#+date: <2022-09-24 Sat>
+#+author: Gregory Grubbs
+#+email: gregory.grubbs@gmail.com
+#+language: en
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 29.0.50 (Org mode 9.5.3)
+#+cite_export:
+#+setupfile: ~/projects/emacs/org-html-themes/org/theme-readtheorg-local.setup
+* Demos for RDF Graph Databases
+  + Some of these may be specific to [[https://stardog.com/][Stardog]], but most should work on any RDF database
+
+* Included demos
+  + [[file:digital-payments/][Digital Payments]]
+    A make-believe digital payment app with social network
+
+    This directory includes Python code for generating
+    + =Users= with active date, active flag, and address
+    + =FoaF= (friend-of-a-friend) with nothing but friend links to other users
+      There may be cases of a User linking to self, and there will be no bidirectional
+      links back from the linked user.  This will allow us to use inference to fill in
+      missing friend linkages
+    + =P2P payments= Payments made to other users - this includes simple =Transaction=
+      data like timestamp for time of payment, amount, etc
+      
